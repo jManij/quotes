@@ -3,12 +3,47 @@
  */
 package quotes;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class AppTest {
-    @Test public void testAppHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+
+    App test = new App();
+    String PATH = "src/main/resources/recentquotes.json";
+
+    @Test public void getRandomQuotesTest() throws FileNotFoundException {
+        Quotes[] allQuotes = test.getQuotes(PATH);
+        int rand = test.getRandomNumber(allQuotes.length);
+        int rand1 = test.getRandomNumber(allQuotes.length);
+        int rand2 = test.getRandomNumber(allQuotes.length);
+        int rand3 = test.getRandomNumber(allQuotes.length);
+        int rand4 = test.getRandomNumber(allQuotes.length);
+        int rand5 = test.getRandomNumber(allQuotes.length);
+        int rand6 = test.getRandomNumber(allQuotes.length);
+
+
+        assertTrue(test.getStringVersion(allQuotes, rand).length() > 0);
+        assertTrue(test.getStringVersion(allQuotes, rand).length() > 1);
+        assertNotNull(test.getStringVersion(allQuotes, rand));
+        assertNotNull(test.getStringVersion(allQuotes, rand));
+        assertTrue(test.getStringVersion(allQuotes,rand).equals(allQuotes[rand].author + " " + allQuotes[rand].text));
+        assertTrue(test.getStringVersion(allQuotes,rand1).equals(allQuotes[rand1].author + " " + allQuotes[rand1].text));
+        assertTrue(test.getStringVersion(allQuotes,rand2).equals(allQuotes[rand2].author + " " + allQuotes[rand2].text));
+        assertTrue(test.getStringVersion(allQuotes,rand3).equals(allQuotes[rand3].author + " " + allQuotes[rand3].text));
+        assertTrue(test.getStringVersion(allQuotes,rand4).equals(allQuotes[rand4].author + " " + allQuotes[rand4].text));
+        assertTrue(test.getStringVersion(allQuotes,rand5).equals(allQuotes[rand5].author + " " + allQuotes[rand5].text));
+        assertTrue(test.getStringVersion(allQuotes,rand6).equals(allQuotes[rand6].author + " " + allQuotes[rand6].text));
+
+
     }
+
+
+
+
 }

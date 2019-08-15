@@ -3,12 +3,42 @@
  */
 package quotes;
 
+import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Random;
+import java.util.Scanner;
+
 public class App {
-    public String getGreeting() {
-        return "Hello world.";
+    //Get randomNumber to get the quote
+    public int getRandomNumber(int MAX) {
+        Random rand = new Random();
+        int randIndex = rand.nextInt(MAX);
+        return randIndex;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+    //Function that returns the string version of quotes
+    public  String getStringVersion(Quotes[] quotesFromFile, int randomNumber) {
+        String printString = "";
+        printString = quotesFromFile[randomNumber].author + " " + quotesFromFile[randomNumber].text;
+
+        return printString;
+    }
+
+    //Function that gets all the Quotes when the path is passed
+    public Quotes[] getQuotes(String PATH) throws  FileNotFoundException{
+        Gson gson = new Gson();
+        Scanner reader = new Scanner(new File(PATH));
+        String stringVersion = "";
+
+        while (reader.hasNext()) {
+            String quoteString = reader.nextLine();
+            stringVersion += quoteString;
+        }
+
+        Quotes[] quotesFromFile = gson.fromJson(stringVersion, Quotes[].class);
+        return quotesFromFile;
+
     }
 }
