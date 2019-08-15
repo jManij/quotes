@@ -1,5 +1,5 @@
 # Manish KC and Joachen Busch
- - https://github.com/jManij/quotes/blob/master/src/main/java/quotes/App.java
+- [Link to Code](https://github.com/jManij/quotes/blob/master/src/main/java/quotes/App.java)
 
 # Lab 08 Design
  -Functionality and Tests
