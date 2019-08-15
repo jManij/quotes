@@ -4,7 +4,11 @@
  -Functionality and Tests
   - Can check if the length is greater than 0
   - Can check to see we do not get a null object
+  - We are using a file called, "recentquotes.json" and we are using gson to parse the file. We then create a method that         randomly generates a single quote from the file and returns it.
   - Can systemprintout out the randomly generated quote from return "printString"
+  
+# Dependencies to run the app
+  - GSON
 
 # Contributions
   - Jack Daniels
