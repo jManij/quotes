@@ -1,7 +1,7 @@
 # Manish KC and Joachen Busch
 - [Link to Code](https://github.com/jManij/quotes/blob/master/src/main/java/quotes/App.java)
 
-# Lab 08 Design
+# Lab 08 Design & Lab 09 Web Request
  -Functionality and Tests
   - Can check if the length is greater than 0
   - Can check to see we do not get a null object
