@@ -4,9 +4,10 @@
 package quotes;
 
 import com.google.gson.Gson;
-
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -41,4 +42,87 @@ public class App {
         return quotesFromFile;
 
     }
-}
+
+    //    public void appendQuote(Quotes quote, String PATH) throws IOException {
+    public void appendQuote(String PATH) throws IOException {
+        Gson gson = new Gson();
+        Scanner reader = new Scanner(new File(PATH));
+        String stringVersion = "";
+
+        while (reader.hasNext()) {
+            String quoteString = reader.nextLine();
+            stringVersion += quoteString;
+        }
+
+
+        // convert java object to JSON format,
+        // and returned as JSON formatted string
+        ArrayList<String> tags = new ArrayList<>();
+        Quotes q = new Quotes(tags, "Ram", "Shyam", "trst");
+//        stringVersion += q.toString();
+//        String json = gson.toJson(stringVersion);  //add quote here
+//
+//        try {
+//            //write converted json data to a file named "CountryGSON.json"
+//            FileWriter writer = new FileWriter(PATH);
+//            writer.write(json);
+//            writer.close();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        System.out.println(stringVersion);
+
+    }
+
+    public  void writeUnicornToFile(String unicornString) {
+
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter("src/main/resources/unicorns.json"));
+            writer.write(unicornString);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    //Function to get Quotes from API request
+    public void getOnlineQuotes(URL url) {
+        try {
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            System.out.println(connection.getResponseCode());
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+
+            System.out.println(content);
+        } catch (IOException e) {
+            System.out.println("Error connecting!");
+        }
+
+    }
+
+    //add quotes if it does not exist in json file or just add all
+
+
+    public static void main(String[] args) throws IOException {
+        App app = new App();
+        URL url = new URL("http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en");
+        app.getOnlineQuotes(url);
+//        app.appendQuote("src/main/resources/recentquotes.json");
+        app.writeUnicornToFile("test");
+    }
+
+    }
+
+
