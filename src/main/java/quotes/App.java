@@ -54,7 +54,7 @@ public class App {
         ArrayList<String> tags = new ArrayList<>();
         Quotes quote = new Quotes(tags, onlinequote.quoteAuthor, "", onlinequote.quoteText);
         String output = gson.toJson(quote);
-
+        System.out.println(onlinequote.quoteText + " ~ " + onlinequote.quoteAuthor);
 
         Scanner reader = new Scanner(new File(PATH));
         String stringVersion = "";
@@ -71,6 +71,7 @@ public class App {
         try {
             writer = new BufferedWriter(new FileWriter("src/main/resources/recentquotes.json"));
             writer.write(finalString + output + ']');
+            System.out.println("New quote added successfully!");
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,11 +83,10 @@ public class App {
 
     //Function to get Quotes from API request
     // It also calls the append method to add the string to the existing json file
-    public void getOnlineQuotes(URL url) {
+    public boolean getOnlineQuotes(URL url) {
         try {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            System.out.println(connection.getResponseCode());
 
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
@@ -95,17 +95,14 @@ public class App {
                 content.append(inputLine);
             }
             in.close();
-
-            System.out.println(content);
             appendQuote(content.toString(), "src/main/resources/recentquotes.json"); //append the quote
+            return  true;
 
         } catch (IOException e) {
             System.out.println("Error connecting!");
         }
-
+        return  false;
     }
-
-    //add quotes if it does not exist in json file or just add all
 
 
     public static void main(String[] args) throws IOException {
