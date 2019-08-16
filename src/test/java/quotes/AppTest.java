@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -40,6 +42,16 @@ public class AppTest {
         assertTrue(test.getStringVersion(allQuotes,rand5).equals(allQuotes[rand5].author + " " + allQuotes[rand5].text));
         assertTrue(test.getStringVersion(allQuotes,rand6).equals(allQuotes[rand6].author + " " + allQuotes[rand6].text));
 
+
+    }
+
+    @Test public void onlineQuoteTest() throws MalformedURLException {
+        URL url = new URL("http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en");
+        assertTrue(test.getOnlineQuotes(url));
+        assertTrue(test.getOnlineQuotes(url));
+        assertTrue(test.getOnlineQuotes(url));
+        assertTrue(test.getOnlineQuotes(url));
+        assertTrue(test.getOnlineQuotes(url));
 
     }
 

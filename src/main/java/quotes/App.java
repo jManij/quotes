@@ -83,7 +83,7 @@ public class App {
 
     //Function to get Quotes from API request
     // It also calls the append method to add the string to the existing json file
-    public void getOnlineQuotes(URL url) {
+    public boolean getOnlineQuotes(URL url) {
         try {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
@@ -96,14 +96,13 @@ public class App {
             }
             in.close();
             appendQuote(content.toString(), "src/main/resources/recentquotes.json"); //append the quote
+            return  true;
 
         } catch (IOException e) {
             System.out.println("Error connecting!");
         }
-
+        return  false;
     }
-
-    //add quotes if it does not exist in json file or just add all
 
 
     public static void main(String[] args) throws IOException {
