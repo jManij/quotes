@@ -55,6 +55,15 @@ public class AppTest {
 
     }
 
+    @Test public void checkJsonUpdateTest() throws MalformedURLException, FileNotFoundException {
+        URL url = new URL("http://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en");
+        Quotes[] quotes = test.getQuotes(PATH);
+        test.getOnlineQuotes(url);
+        Quotes[] newquotes = test.getQuotes(PATH);
+        assertTrue(quotes.length != newquotes.length);
+        assertTrue(newquotes.length > quotes.length);
+    }
+
 
 
 
