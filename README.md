@@ -1,5 +1,7 @@
 # Manish KC and Joachen Busch
 - [Link to Code](https://github.com/jManij/quotes/blob/master/src/main/java/quotes/App.java)
+- [Link to Test](https://github.com/jManij/quotes/blob/master/src/test/java/quotes/AppTest.java)
+
 
 # Lab 08 Design & Lab 09 Web Request
  -Functionality and Tests
