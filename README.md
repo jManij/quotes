@@ -14,11 +14,14 @@ Testing from terminal:
    - cd to quotes
    - run the following command: './gradlew test'
    - All the tests should pass.
+   - To ensure JSON file has been updated, the file should have new content added at the end.
    
 Testing from IJ:
   - Via import project, choose "quotes"
   - run the following command: './gradlew test'
   - All the tests should pass.
+  - To ensure JSON file has been updated, the file should have new content added at the end.
+
 
   
 # Dependencies to run the app
